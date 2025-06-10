@@ -1,0 +1,120 @@
+div{
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+body{
+    background-image: url(../img/fondotodo.jpg);
+    background-position: center;
+    background-size: cover;
+    background-attachment: fixed;
+    display: flex;
+    justify-content: center;
+}
+
+body h1{
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    color: white;
+}
+
+
+#cont{
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+}
+
+#princ{
+    text-align: center;
+    background-color: #D2B48C;
+    display: flex;
+    justify-content: center;
+    width: 500px;
+    border-radius: 20px;
+    position: fixed;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+}
+
+#olvidar{
+    display: flex;
+    flex-direction: row-reverse;
+}
+
+div img{
+    width: 320px;
+    height: 100px;
+    background-color: #F5DEB3;
+    border-radius: 20px;    
+}
+
+div label input{
+    width: 350px;
+    height: 30px;
+    border-radius: 10px;
+    border-bottom: black 50 px;
+    border: none;
+    background-color: white;
+    font-size: larger;
+    font-weight: bold;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+div h1{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+input{
+    font-size: larger;
+    font-weight: bold;
+    padding-left: 40px;
+
+}
+
+.icono{
+    width: 25px;
+    height: 25px;
+    left: 10px;
+    transform: translateY(20%);
+    position: absolute;
+    background-color: white;
+
+ 
+}
+.input-cont{
+    position: relative;
+    margin-right: 30px;
+    width: 100%;
+    display: flex;
+}
+
+#boton_inicio{
+    width: auto;
+    align-self: center;
+}
+
+#boton_inicio2{
+    background-color: rgb(75, 72, 72);
+    width: 100%;
+    height: 40px;
+    align-items: center;
+    color: white;
+    border-radius: 10px;
+    padding-right: 40px;
+}
+
+#enviar{
+    display: flex;
+    flex-direction: row;
+}
+
+div a p{
+    color: white;
+    font-size: 17px;
+    text-decoration: none;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}

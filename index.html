@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="css/estilos.css">
+    <link rel="shortcut icon" href="img/123.png"/>
+</head>
+<body>
+    <div id="princ">
+        <div id="cont">
+            <form action="index.php" method="post" enctype="multipart/form-data">
+                <div>
+                    <img src="img/efaa.png" alt="">
+                    <h1>Iniciar Sesión </h1>
+                </div>
+                <div class="input-cont">
+                    <label for="user">
+                    <input type="text" name="user" id="user" placeholder="Usuario" pattern="[A-Z a-z] (0,20)">
+                    <img src="img/user.png" alt="" class="icono">
+                </label>
+                </div>
+                <div class="input-cont">
+                    <label for="pasw">
+                    <input type="password" name="pasw" id="pasw" placeholder="Contraseña">
+                    <img src="img/secure.png" alt="" class="icono">
+                </label>
+                </div>
+
+                <div id="olvidar">
+                    <a href="recuperar.html"><p>¿Hás olvidado la contraseña?</p></a>
+                </div>
+                <div id="enviar">
+                    <input id="boton_inicio2" type="submit" value="Iniciar Sesión">
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

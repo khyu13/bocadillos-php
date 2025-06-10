@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="css/estilos.css">
+    <link rel="shortcut icon" href="img/123.png"/>
+</head>
+<body>
+    <div id="princ">
+        <div id="cont">
+            <form action="index.php" method="get" enctype="multipart/form-data">
+                <div>
+                    <img src="img/efaa.png" alt="">
+                    <h1>Recuperar contraseña </h1>
+                </div>
+                <div class="input-cont">
+                    <label for="user">
+                    <input type="text" name="user" id="user" placeholder="Correo electronico" pattern="[A-Z a-z] (0,20)">
+                    <img src="img/user.png" alt="" class="icono">
+                </label>
+                </div>
+                <div class="input-cont">
+                    <label for="pasw">
+                    <input type="password" name="pasw" id="pasw" placeholder="Contraseña antigua">
+                    <img src="img/secure.png" alt="" class="icono">
+                </label>
+                </div>
+                <div class="input-cont">
+                    <label for="pasw">
+                    <input type="password" name="pasw" id="pasw" placeholder="Nueva contraseña">
+                    <img src="img/secure.png" alt="" class="icono">
+                </label>
+                </div>
+                <div id="enviar">
+                    <input id="boton_inicio2" type="submit" value="Recuperar contraseña">
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

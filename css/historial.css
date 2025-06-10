@@ -1,0 +1,108 @@
+body {
+    background-image: url(../img/fondotodo.jpg);
+    background-size: cover;
+    
+}
+
+/* Barra superior mejorada */
+.top-bar {
+    background-color: #D2B48C;
+    color: #ffffff;
+    height: 4rem;
+    display: flex;
+    align-items: center;
+    padding: 0 2em;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+  
+}
+
+.top-bar-content {
+    max-width: 1250px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1em;
+    width: 100%;
+}
+
+.top-bar-content h2 button1,
+.top-bar-content a,
+.top-bar-content span {
+    background: none;
+    border: none;
+    color: #ffffff;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+.top-bar-content a:hover,
+.top-bar-content span:hover {
+    color: #AED1E8;
+}
+
+/* Botón Cerrar Sesión */
+.logout-btn {
+    background-color: #e74c3c;
+    border: none;
+    border-radius: 0.5em;
+    padding: 0.5em 1em;
+    color: #ffffff;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+.logout-btn:hover {
+    background-color: #c0392b;
+    transform: translateY(-2px);
+}
+
+
+
+/* Container for both sections side by side */
+    .historial-sections {
+      display: flex;
+      gap: 2rem;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-top: 100px;
+    }
+    .historial-section {
+      /*flex: 1;*/
+      min-width: 280px;
+    }
+    /* Section header styling */
+    .historial-section h1 {
+      /*padding-top: 1000px;*/  
+      font-size: 1.6rem;
+      color: #003C64;
+      margin-bottom: 1rem;
+      border-bottom: 2px solid #003C64;
+      padding-bottom: 0.5rem;
+    }
+    /* Cards styling remains same */
+    .pedido-card {
+      background: #fff;
+      border-radius: 1em;
+      box-shadow: 2px 2px 6px rgba(0,0,0,0.1);
+      padding: 1rem;
+      margin-bottom: 1rem;
+      /*transition: transform 0.2s ease;*/
+    }
+    .pedido-card:hover { transform: translateY(-3px); }
+    .pedido-card h4 { margin:0 0 .5em; font-size:1.2rem; color:#012b47; }
+    .pedido-card p { margin:.3em 0; font-size:1rem; color:#333; }
+    .status { display:inline-block; font-weight:bold; color:#fff; padding:.2em .5em; border-radius:.5em; font-size:.9rem; margin-top:.5em; }
+    .pendiente { background:#f39c12; }
+    .entregado { background:#27ae60; }
+
+    .top-bar img{
+    border-radius:20px;
+}
