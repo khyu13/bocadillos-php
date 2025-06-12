@@ -22,14 +22,13 @@ try {
 
 // Comprueba si ya tiene un pedido pendiente
 $stmtChk = $pdo->prepare(
-    'SELECT COUNT(*) FROM pedido WHERE id_usuario = ? AND retirado = 0'
-);
-$stmtChk->execute([$userId]);
-$pendientes = (int)$stmtChk->fetchColumn();
+    'SELECT COUNT(*) FROM pedido WHERE id_usuario = ? AND retirado = 0');
+    $stmtChk->execute([$userId]);
+    $pendientes = (int)$stmtChk->fetchColumn();
 
 if ($pendientes > 0) {
     // Ya tiene un pedido activo
-    header('Location: bocadillo.php?pedido=limit');
+    header('Location: gestion_pedido.php');
     exit;
 }
 
@@ -44,7 +43,7 @@ if (isset($_POST['id_bocadillo'])) {
     );
     $stmt->execute([$userId, $idB, $qty]);
 
-    header('Location: bocadillo.php?pedido=ok');
+    header('Location: gestion_pedido.php');
     exit;
 }
 

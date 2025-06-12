@@ -1,4 +1,4 @@
-<?php
+ <?php
 session_start();
 
 $error = '';
@@ -52,10 +52,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         header('Location: cocina.php');
                     }elseif($row['rol'] === 'admin') {
                         header('Location: admin.php');
+                    
+                    } else {
+                        // Comprobar si el usuario ya tiene un pedido activo
+                        $sqlPedido = "SELECT * FROM pedido WHERE id_usuario = :id_usuario AND retirado = 0 LIMIT 1";
+                        $stmtPedido = $pdo->prepare($sqlPedido);
+                        $stmtPedido->execute(['id_usuario' => $row['id_usuario']]);
+                        $pedido = $stmtPedido->fetch(PDO::FETCH_ASSOC);
+
+                        if ($pedido) {
+                            // Si hay pedido activo, enviarlo a la página para ver/cancelar pedido
+                            header('Location: gestion_pedido.php');
+                        } else {
+                            // Si no hay pedido activo, enviarlo a la página para hacer pedido
+                            header('Location: bocadillo.php');
+                        }
                     }
-                    else {
-                        header('Location: bocadillo.php');
-                    } 
                     exit;
                 } else {
                     $error = 'Contraseña incorrecta.';
@@ -63,14 +75,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             } else {
                 $error = 'Usuario no encontrado.';
             }
-
         } catch (PDOException $e) {
             ($e->getMessage());
-            $error = 'Error conectando con la base de datos.';
+            $error = 'Error conectando con la base de datos.'. $e->getMessage();
         }
     }
 }
 ?>
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -83,7 +95,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <body>
     <div id="princ">
         <div id="cont">
-            <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
+            <form method="post">
                 <div>
                     <img src="img/efaa.png" alt="Logo">
                     <h1>Iniciar Sesión</h1>
