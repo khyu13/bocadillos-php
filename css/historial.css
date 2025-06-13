@@ -1,7 +1,11 @@
 body {
-    background-image: url(../img/fondotodo.jpg);
-    background-size: cover;
-    
+  background-image: url(../img/fondotodo.jpg);
+  background-size: cover;
+  background-attachment: fixed;
+  background-position: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;  
 }
 
 /* Barra superior mejorada */
@@ -87,14 +91,16 @@ body {
       border-bottom: 2px solid #003C64;
       padding-bottom: 0.5rem;
     }
-    /* Cards styling remains same */
+    
     .pedido-card {
       background: #fff;
       border-radius: 1em;
       box-shadow: 2px 2px 6px rgba(0,0,0,0.1);
       padding: 1rem;
       margin-bottom: 1rem;
-      /*transition: transform 0.2s ease;*/
+      width: 20em;
+      margin-left: 30em;
+      
     }
     .pedido-card:hover { transform: translateY(-3px); }
     .pedido-card h4 { margin:0 0 .5em; font-size:1.2rem; color:#012b47; }
@@ -105,4 +111,88 @@ body {
 
     .top-bar img{
     border-radius:20px;
+}
+
+.filtros {
+  margin: 0 auto 20px;
+  display: flex;
+  gap: 1em;
+  flex-wrap: wrap;
+  justify-content: center;
+  background-color: #f9f3e9;
+  padding: 1em;
+  border-radius: 10px;
+}
+
+
+.filtros label {
+  font-weight: bold;
+}
+
+.filtros select,
+.filtros input[type="text"] {
+  padding: 5px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+.filtros button {
+  padding: 8px 15px;
+  border-radius: 5px;
+  background-color: #f1bd00;
+  color: #000;
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.filtros button:hover {
+  background-color: #e0aa00;
+}
+
+.pedido-card {
+  background-color: #fff;
+  border-radius: 10px;
+  padding: 1em;
+  margin: 1em auto;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  text-align: left;
+  max-width: 600px;
+}
+
+.status.entregado {
+  background-color: #27ae60;
+  color: white;
+  padding: 4px 10px;
+  border-radius: 5px;
+  font-size: 0.8em;
+  display: inline-block;
+  margin-top: 5px;
+}
+
+.total-final {
+  font-size: 1.3em;
+  font-weight: bold;
+  text-align: center;
+  background-color: #f1bd00;
+  padding: 10px;
+  border-radius: 8px;
+  margin: 1em auto;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+#contenedor3 {
+  background-color: #D2B48C;
+  margin-top: 6em;
+  padding: 2em;
+  border-radius: 2em;
+  width: 80%;
+  max-width: 900px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  overflow-y: auto;
+  max-height: 80vh;
+  position: relative;
 }
