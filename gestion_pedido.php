@@ -44,6 +44,19 @@ $stmt = $pdo->prepare("
 
 $stmt->execute([$userId]);
 $pedido = $stmt->fetch(PDO::FETCH_ASSOC);
+$alergenos = [];
+
+if ($pedido) {
+    $stmtA = $pdo->prepare("
+        SELECT a.nombre, a.image
+        FROM bocadillo_alergeno ba
+        JOIN alergeno a ON ba.id_alergeno = a.id_alergeno
+        WHERE ba.id_bocadillo = ?
+    ");
+    $stmtA->execute([$pedido['id_bocadillo']]);
+    $alergenos = $stmtA->fetchAll(PDO::FETCH_ASSOC);
+}
+
 // Nombre del alumno
 $alumnoNombre = $_SESSION['user_name'];
 ?>
@@ -73,7 +86,7 @@ $alumnoNombre = $_SESSION['user_name'];
 
 
 <?php if ($mensaje): ?>
-    <p class="mensaje-exito"><?= htmlspecialchars($mensaje) ?></p>
+    <p class="mensaje-exito"><?= ($mensaje) ?></p>
 <?php endif; ?>
 <div id= "contenedor2">
     <h1>Gestión de Pedido</h1>
@@ -83,16 +96,17 @@ $alumnoNombre = $_SESSION['user_name'];
                 <input type="hidden" name="id_bocadillo" value="<?= $bocadillos_F['id_bocadillo'] ?>">
                 <input type="hidden" name="cantidad" value="1">
                 <div class="info">
-                <p><strong>Bocadillo:</strong> <?= htmlspecialchars($pedido['nombre_bocadillo']) ?></p>
+                <p><strong>Bocadillo:</strong> <?= ($pedido['nombre_bocadillo']) ?></p>
                 <p><strong>Cantidad:</strong> <?= (int)$pedido['cantidad'] ?></p>
                 <p><strong>Precio unitario:</strong> <?= number_format($pedido['precio'], 2) ?> €</p>
                 <p><strong>Total:</strong> <?= number_format($pedido['precio'] * $pedido['cantidad'], 2) ?> €</p>
                 <p><strong>Alergenos:</strong></p>
                 <div class="alergenos">
-                <img src="img/huevos.png" alt="Huevos">
-                <img src="img/gluten.png" alt="Gluten">
-                <img src="img/lactosa.png" alt="Lácteos">
-              </div>
+                    <?php foreach ($alergenos as $a): ?>
+                        <img src="img/<?= ($a['image']) ?>" alt="<?= ($a['nombre']) ?>" title="<?= ($a['nombre']) ?>">
+                    <?php endforeach; ?>
+                </div>
+
                 </div>
 
                 <form method="post">

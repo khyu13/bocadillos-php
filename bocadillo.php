@@ -10,6 +10,8 @@ if (!isset($_SESSION['user_id']) || $_SESSION['user_role'] !== 'alumno') {
 
 $fecha = date("l"); // Obtiene el día de la semana en inglés
 
+//$fecha= 'wednesday';
+
 
 
 // Conexión a la BD
@@ -32,6 +34,17 @@ $stmtF = $pdo->prepare(
 );
 $stmtF->execute();
 $bocadillos_F = $stmtF->fetch(PDO::FETCH_ASSOC);
+$alergenos_F = [];
+if ($bocadillos_F) {
+    $stmtA_F = $pdo->prepare("
+        SELECT a.nombre, a.image
+        FROM bocadillo_alergeno ba
+        JOIN alergeno a ON ba.id_alergeno = a.id_alergeno
+        WHERE ba.id_bocadillo = ?
+    ");
+    $stmtA_F->execute([$bocadillos_F['id_bocadillo']]);
+    $alergenos_F = $stmtA_F->fetchAll(PDO::FETCH_ASSOC);
+}
 
 // bocadillos calientes
 $stmtC = $pdo->prepare(
@@ -43,7 +56,19 @@ $stmtC = $pdo->prepare(
 );
 $stmtC->execute();
 $bocadillos_C = $stmtC->fetch(PDO::FETCH_ASSOC);
-// Combina los resultados de ambos tipos de bocadillos
+//mostrar los alergenos dinamicamente
+$alergenos_C = [];
+if ($bocadillos_C) {
+    $stmtA_C = $pdo->prepare("
+        SELECT a.nombre, a.image
+        FROM bocadillo_alergeno ba
+        JOIN alergeno a ON ba.id_alergeno = a.id_alergeno
+        WHERE ba.id_bocadillo = ?
+    ");
+    $stmtA_C->execute([$bocadillos_C['id_bocadillo']]);
+    $alergenos_C = $stmtA_C->fetchAll(PDO::FETCH_ASSOC);
+}
+
 
 
 // Alerta tras pedido
@@ -96,10 +121,11 @@ $alumnoNombre = $_SESSION['user_name'];
               <p><?php echo $bocadillos_F['descripcion'] ?></p>
               <p><strong>Alergenos:</strong></p>
               <div class="alergenos">
-                <img src="img/huevos.png" alt="Huevos">
-                <img src="img/gluten.png" alt="Gluten">
-                <img src="img/lactosa.png" alt="Lácteos">
+                <?php foreach ($alergenos_F as $a): ?>
+                  <img src="img/<?= ($a['image']) ?>" alt="<?= ($a['nombre']) ?>" title="<?= ($a['nombre']) ?>">
+                <?php endforeach; ?>
               </div>
+
               <h3>PRECIO: <?php echo $bocadillos_F['pvp'] ?>€</h3>
             </div>
           </div>
@@ -119,10 +145,11 @@ $alumnoNombre = $_SESSION['user_name'];
               <p><?php echo $bocadillos_C['descripcion'] ?></p>
               <p><strong>Alergenos:</strong></p>
               <div class="alergenos">
-                <img src="img/huevos.png" alt="Huevos">
-                <img src="img/gluten.png" alt="Gluten">
-                <img src="img/lactosa.png" alt="Lácteos">
+                <?php foreach ($alergenos_C as $a): ?>
+                  <img src="img/<?= ($a['image']) ?>" alt="<?=($a['nombre']) ?>" title="<?= ($a['nombre']) ?>">
+                <?php endforeach; ?>
               </div>
+
               <h3>PRECIO: <?php echo $bocadillos_C['pvp'] ?>€</h3>
             </div>
           </div>
